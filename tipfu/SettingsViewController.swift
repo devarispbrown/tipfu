@@ -20,9 +20,6 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         self.edgesForExtendedLayout = UIRectEdge.None
         self.view.backgroundColor = UIColor.whiteColor()
-        let currTip = tips[tipControl.selectedSegmentIndex]
-        self.tipLabel.text = "Default tip is \(currTip)%"
-//        self.tipLabel.text = "Default Tip"
         
         userDefaults = NSUserDefaults.standardUserDefaults()
         let tipVal = userDefaults?.integerForKey("defaultTip")
