@@ -27,6 +27,9 @@ class TipViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .Done, target: self, action: "didTapSettings:")
         
+        var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onTap:")
+        self.view.addGestureRecognizer(tap)
+        
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
         
