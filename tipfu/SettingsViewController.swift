@@ -26,6 +26,8 @@ class SettingsViewController: UIViewController {
         for (index,tmp) in enumerate(tips) {
             if(tipVal == tmp){
                 tipControl.selectedSegmentIndex = index
+                let currTip = tips[tipControl.selectedSegmentIndex]
+                self.tipLabel.text = "Default tip is \(currTip)%"
             }
         }
     }
