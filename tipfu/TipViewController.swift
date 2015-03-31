@@ -14,6 +14,8 @@ class TipViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var amountLabel: UITextField!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var partySizeLabel: UITextField!
+    @IBOutlet weak var partyTotalLabel: UILabel!
     
     var userDefaults : NSUserDefaults?
     let tips = [ 18, 20, 22]
@@ -30,6 +32,7 @@ class TipViewController: UIViewController {
         var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onTap:")
         self.view.addGestureRecognizer(tap)
         
+        partySizeLabel.text = "1"
         tipLabel.text = "$0.00"
         totalLabel.text = "$0.00"
         
@@ -73,14 +76,16 @@ class TipViewController: UIViewController {
     }
     
     @IBAction func onEditingChanged(sender: AnyObject) {
+        let partySize = (partySizeLabel.text as NSString).doubleValue
         let bill = (amountLabel.text as NSString).doubleValue
         let total = bill + bill * (Double(tips[tipControl.selectedSegmentIndex])/100)
         
         var formatter = NSNumberFormatter()
         formatter.numberStyle = .CurrencyStyle
         
-        tipLabel.text = formatter.stringFromNumber(bill * Double(tips[tipControl.selectedSegmentIndex])/100)
+        tipLabel.text = formatter.stringFromNumber((bill * Double(tips[tipControl.selectedSegmentIndex])/100))
         totalLabel.text = formatter.stringFromNumber(total)
+        partyTotalLabel.text = formatter.stringFromNumber(total / partySize)
     }
     
     @IBAction func onTap(sender: AnyObject) {
